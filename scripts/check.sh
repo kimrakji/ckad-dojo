@@ -23,7 +23,15 @@ echo "yq     : $(yq --version)"
 
 echo
 echo "[Clusters]"
-kind get clusters
+
+CLUSTERS="$(kind get clusters)"
+
+if ! echo "$CLUSTERS" | grep -qx "$CLUSTER_NAME"; then
+  echo "Cluster not found: $CLUSTER_NAME"
+  exit 0
+fi
+
+echo "$CLUSTERS"
 
 echo
 echo "[Nodes]"
