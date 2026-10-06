@@ -17,7 +17,7 @@ set -euo pipefail
 # Configuration
 # ---------------------------------------------------------
 
-CLUSTER_NAME="ckad"
+CLUSTER_NAME="cloud-native-dojo"
 
 KUBERNETES_VERSION="v1.37.0"
 KUBECTL_VERSION="v1.37.1"
@@ -305,7 +305,7 @@ grep -qxF 'complete -o default -F __start_kubectl k' "$BASHRC" \
 # ---------------------------------------------------------
 # 8. Kubernetes cluster
 #
-# 이미 ckad 클러스터가 있다면 새로 만들지 않는다.
+# 실습 리소스를 유지하기 위해 동일한 이름의 클러스터를 재사용한다.
 #
 # Docker group 변경 직후에도 실행할 수 있도록
 # kind 명령은 sg docker를 통해 실행한다.

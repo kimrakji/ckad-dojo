@@ -9,7 +9,7 @@ set -euo pipefail
 # Docker, kubectl, kind 등의 도구 자체는 삭제하지 않는다.
 # ---------------------------------------------------------
 
-CLUSTER_NAME="ckad"
+CLUSTER_NAME="cloud-native-dojo"
 
 
 # sudo 실행 방지

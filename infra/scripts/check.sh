@@ -8,7 +8,7 @@ set -euo pipefail
 # 설치된 도구와 Kubernetes 클러스터 상태를 확인한다.
 # ---------------------------------------------------------
 
-CLUSTER_NAME="ckad"
+CLUSTER_NAME="cloud-native-dojo"
 
 
 # root로 실행하면 root 사용자의 kubeconfig를 참조하게 되므로
@@ -61,7 +61,7 @@ echo "[Clusters]"
 
 CLUSTERS="$(kind get clusters 2>/dev/null || true)"
 
-# ckad 클러스터가 없는 상태도 정상적인 상태로 취급한다.
+# 클러스터 생성 전에도 도구를 점검할 수 있도록 미생성 상태 허용
 if ! echo "$CLUSTERS" | grep -qx "$CLUSTER_NAME"; then
   echo "Cluster not found: $CLUSTER_NAME"
   exit 0
@@ -77,10 +77,10 @@ echo "$CLUSTERS"
 echo
 echo "[Nodes]"
 
-kubectl get nodes
+kubectl --context "kind-${CLUSTER_NAME}" get nodes
 
 
 echo
 echo "[Pods]"
 
-kubectl get pods -A
+kubectl --context "kind-${CLUSTER_NAME}" get pods -A

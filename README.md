@@ -44,7 +44,7 @@ UTM VM 기준 구성은 CPU 2 Core, 메모리 4 GB, 디스크 30 GB입니다. �
 
 Docker 버전은 고정하지 않습니다. Docker 명령이 없으면 공식 APT 저장소를 등록해 설치하고, 이미 있으면 기존 설치를 사용합니다.
 
-현재 환경 관리 스크립트의 클러스터 이름은 `ckad`, kubectl context는 `kind-ckad`입니다.
+환경 관리 스크립트의 클러스터 이름은 `cloud-native-dojo`, kubectl context는 `kind-cloud-native-dojo`입니다. 단일 control-plane 노드 이름은 `cloud-native-dojo-control-plane`입니다.
 
 ## Project Structure : 프로젝트 구조
 
@@ -85,9 +85,9 @@ cd cloud-native-dojo
 - 기본 패키지와 Docker 설치, Docker daemon 활성화 및 사용자 그룹 설정
 - 지정된 버전의 kubectl, kind, Helm, yq 설치
 - `~/.bashrc`에 `k=kubectl` 별칭 및 Bash 자동완성 설정
-- `infra/kind.yaml`과 지정된 Kubernetes 이미지로 `ckad` 클러스터 생성
+- `infra/kind.yaml`과 지정된 Kubernetes 이미지로 `cloud-native-dojo` 클러스터 생성
 - 기존 클러스터가 있으면 재생성 대신 kubeconfig 갱신
-- `kind-ckad` context 선택 및 Node·CoreDNS 준비 상태 확인
+- `kind-cloud-native-dojo` context 선택 및 Node·CoreDNS 준비 상태 확인
 
 설치 후 Bash 설정을 적용합니다.
 
@@ -109,12 +109,12 @@ source ~/.bashrc
 ./infra/scripts/check.sh
 ```
 
-Docker 버전 및 daemon 연결, 도구 버전, kind 클러스터 목록, Node와 전체 Namespace의 Pod를 확인합니다. 필요한 도구와 Docker 연결이 정상인 상태에서 `ckad` 클러스터가 없으면 `Cluster not found: ckad`를 출력하고 정상 종료합니다.
+Docker 버전 및 daemon 연결, 도구 버전, kind 클러스터 목록, Node와 전체 Namespace의 Pod를 확인합니다. 필요한 도구와 Docker 연결이 정상인 상태에서 `cloud-native-dojo` 클러스터가 없으면 `Cluster not found: cloud-native-dojo`를 출력하고 정상 종료합니다.
 
-Node·Pod 조회는 현재 kubectl context를 사용합니다. 다른 클러스터를 사용한 뒤에는 먼저 훈련 클러스터로 전환합니다.
+Node·Pod 조회는 `kind-cloud-native-dojo` context를 명시하여 수행합니다. 실습 명령을 직접 실행할 때도 이 context를 사용합니다.
 
 ```bash
-kubectl config use-context kind-ckad
+kubectl config use-context kind-cloud-native-dojo
 ```
 
 ### Reset : 초기화
@@ -123,7 +123,7 @@ kubectl config use-context kind-ckad
 ./infra/scripts/reset.sh
 ```
 
-기존 `ckad` 클러스터와 그 안의 리소스를 삭제한 뒤 지정된 Kubernetes 버전으로 재생성합니다. 기존 클러스터가 없으면 새로 생성하며, Node와 CoreDNS가 준비될 때까지 기다립니다.
+기존 `cloud-native-dojo` 클러스터와 그 안의 리소스를 삭제한 뒤 지정된 Kubernetes 버전으로 재생성합니다. 기존 클러스터가 없으면 새로 생성하며, Node와 CoreDNS가 준비될 때까지 기다립니다.
 
 ### Destroy : 삭제
 
@@ -131,7 +131,19 @@ kubectl config use-context kind-ckad
 ./infra/scripts/destroy.sh
 ```
 
-`ckad` 클러스터를 삭제합니다. Docker와 설치된 도구는 유지하며, 클러스터가 없으면 안내 메시지를 출력하고 종료합니다. 다시 훈련하려면 초기화 절차를 실행합니다.
+`cloud-native-dojo` 클러스터를 삭제합니다. Docker와 설치된 도구는 유지하며, 클러스터가 없으면 안내 메시지를 출력하고 종료합니다. 다시 훈련하려면 초기화 절차를 실행합니다.
+
+### Migration : 기존 클러스터 전환
+
+기존 `ckad` 클러스터가 있으면 Ubuntu VM의 저장소 루트에서 다음 명령으로 새 이름의 클러스터로 전환합니다. 첫 번째 명령은 기존 `ckad` 클러스터와 그 안의 실습 리소스를 삭제합니다.
+
+```bash
+kind delete cluster --name ckad
+./infra/scripts/reset.sh
+./infra/scripts/check.sh
+```
+
+환경 관리 스크립트는 `cloud-native-dojo` 클러스터만 관리하므로 기존 `ckad` 클러스터 정리는 위 명령으로 별도 수행합니다.
 
 ## Task Workflow : 반복 실습
 

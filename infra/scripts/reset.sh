@@ -9,7 +9,7 @@ set -euo pipefail
 # 동일한 설정으로 깨끗하게 다시 생성한다.
 # ---------------------------------------------------------
 
-CLUSTER_NAME="ckad"
+CLUSTER_NAME="cloud-native-dojo"
 KUBERNETES_VERSION="v1.37.0"
 
 
