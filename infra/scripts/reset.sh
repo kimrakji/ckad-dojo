@@ -3,9 +3,9 @@
 set -euo pipefail
 
 # ---------------------------------------------------------
-# CKAD Dojo - Cluster Reset
+# Cloud Native Dojo - Cluster Reset
 #
-# 기존 CKAD 클러스터를 삭제하고
+# 기존 실습 클러스터를 삭제하고
 # 동일한 설정으로 깨끗하게 다시 생성한다.
 # ---------------------------------------------------------
 
@@ -18,7 +18,7 @@ KUBERNETES_VERSION="v1.37.0"
 # ---------------------------------------------------------
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
 KIND_CONFIG="${ROOT_DIR}/infra/kind.yaml"
 
@@ -31,7 +31,7 @@ fi
 
 
 echo "======================================"
-echo " RESET CKAD DOJO"
+echo " RESET CLOUD NATIVE DOJO"
 echo "======================================"
 
 
@@ -95,4 +95,4 @@ echo
 kubectl get nodes
 
 echo
-echo "CKAD DOJO RESET COMPLETE"
+echo "CLOUD NATIVE DOJO RESET COMPLETE"

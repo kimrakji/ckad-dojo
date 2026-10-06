@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # ---------------------------------------------------------
-# CKAD Dojo - Status Checker
+# Cloud Native Dojo - Status Checker
 #
 # 설치된 도구와 Kubernetes 클러스터 상태를 확인한다.
 # ---------------------------------------------------------
@@ -20,7 +20,7 @@ fi
 
 
 echo "======================================"
-echo " CKAD DOJO STATUS"
+echo " CLOUD NATIVE DOJO STATUS"
 echo "======================================"
 echo
 

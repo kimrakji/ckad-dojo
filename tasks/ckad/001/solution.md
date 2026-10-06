@@ -5,8 +5,8 @@
 저장소 루트에서 실행합니다.
 
 ```bash
-./tasks/001/scripts/setup.sh
-cd tasks/001
+./tasks/ckad/001/scripts/setup.sh
+cd tasks/ckad/001
 ```
 
 ## Solution : 풀이

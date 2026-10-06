@@ -3,9 +3,9 @@
 set -euo pipefail
 
 # ---------------------------------------------------------
-# CKAD Dojo - Cluster Destroy
+# Cloud Native Dojo - Cluster Destroy
 #
-# CKAD 훈련용 kind 클러스터를 완전히 삭제한다.
+# 실습용 kind 클러스터를 완전히 삭제한다.
 # Docker, kubectl, kind 등의 도구 자체는 삭제하지 않는다.
 # ---------------------------------------------------------
 

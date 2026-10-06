@@ -3,9 +3,9 @@
 set -euo pipefail
 
 # ---------------------------------------------------------
-# CKAD Dojo - Environment Installer
+# Cloud Native Dojo - Environment Installer
 #
-# Ubuntu Minimal 환경에 CKAD 훈련에 필요한 도구를 설치하고
+# Ubuntu Minimal 환경에 클라우드 네이티브 실습에 필요한 도구를 설치하고
 # kind 기반 Kubernetes 클러스터를 생성한다.
 #
 # 이 스크립트는 sudo로 실행하지 않는다.
@@ -34,7 +34,7 @@ YQ_VERSION="v4.54.1"
 # ---------------------------------------------------------
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
 KIND_CONFIG="${ROOT_DIR}/infra/kind.yaml"
 
@@ -55,7 +55,7 @@ fi
 # ---------------------------------------------------------
 # OS check
 #
-# 현재 CKAD Dojo는 Ubuntu 환경만 지원한다.
+# 현재 Cloud Native Dojo는 Ubuntu 환경만 지원한다.
 # ---------------------------------------------------------
 
 if [[ ! -f /etc/os-release ]]; then
@@ -67,7 +67,7 @@ source /etc/os-release
 
 if [[ "$ID" != "ubuntu" ]]; then
   echo "Unsupported OS: $ID"
-  echo "CKAD Dojo currently supports Ubuntu only."
+  echo "Cloud Native Dojo currently supports Ubuntu only."
   exit 1
 fi
 
@@ -311,7 +311,7 @@ grep -qxF 'complete -o default -F __start_kubectl k' "$BASHRC" \
 # kind 명령은 sg docker를 통해 실행한다.
 # ---------------------------------------------------------
 
-echo "[8/8] Creating CKAD cluster..."
+echo "[8/8] Creating training cluster..."
 
 if ! sg docker -c "kind get clusters" 2>/dev/null \
   | grep -qx "$CLUSTER_NAME"; then
@@ -364,7 +364,7 @@ kubectl rollout status \
 
 echo
 echo "======================================"
-echo " CKAD DOJO READY"
+echo " CLOUD NATIVE DOJO READY"
 echo "======================================"
 echo
 
