@@ -1,0 +1,7 @@
+FROM nginx:1.30.5-alpine
+
+LABEL io.ckad-dojo.task="001"
+
+COPY index.html style.css status.json /usr/share/nginx/html/
+
+EXPOSE 80
