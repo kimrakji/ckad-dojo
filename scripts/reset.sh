@@ -13,6 +13,16 @@ CLUSTER_NAME="ckad"
 KUBERNETES_VERSION="v1.37.0"
 
 
+# ---------------------------------------------------------
+# Paths
+# ---------------------------------------------------------
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+KIND_CONFIG="${ROOT_DIR}/infra/kind.yaml"
+
+
 # sudo 실행 방지
 if [[ "$EUID" -eq 0 ]]; then
   echo "Do not run this script with sudo."
@@ -53,7 +63,8 @@ echo "[2/3] Creating cluster..."
 
 kind create cluster \
   --name "$CLUSTER_NAME" \
-  --image "kindest/node:${KUBERNETES_VERSION}"
+  --image "kindest/node:${KUBERNETES_VERSION}" \
+  --config "$KIND_CONFIG"
 
 
 # ---------------------------------------------------------

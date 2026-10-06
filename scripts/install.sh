@@ -27,6 +27,19 @@ YQ_VERSION="v4.54.1"
 
 
 # ---------------------------------------------------------
+# Paths
+#
+# install.sh를 어느 디렉터리에서 실행하더라도
+# repository root와 kind 설정 파일을 찾을 수 있도록 한다.
+# ---------------------------------------------------------
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+KIND_CONFIG="${ROOT_DIR}/infra/kind.yaml"
+
+
+# ---------------------------------------------------------
 # Prevent root execution
 #
 # root로 실행하면 kubeconfig가 /root 아래 생성되는 등
@@ -306,7 +319,8 @@ if ! sg docker -c "kind get clusters" 2>/dev/null \
   sg docker -c \
     "kind create cluster \
       --name '${CLUSTER_NAME}' \
-      --image 'kindest/node:${KUBERNETES_VERSION}'"
+      --image 'kindest/node:${KUBERNETES_VERSION}' \
+      --config '${KIND_CONFIG}'"
 
 else
 
