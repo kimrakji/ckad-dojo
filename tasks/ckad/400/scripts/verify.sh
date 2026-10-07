@@ -69,7 +69,7 @@ pass "Archive includes the expected name and tag."
 CONFIG_MEMBER="$(jq -r '.Config' <<< "$ENTRY")"
 CONFIG="$(tar -xOf "$ARCHIVE" -- "$CONFIG_MEMBER" 2>/dev/null)" \
   || fail "Image configuration is missing from the archive."
-jq -e '.config.Labels["io.ckad-dojo.task"] == "001" and .rootfs.type == "layers"' \
+jq -e '.config.Labels["io.ckad-dojo.task"] == "400" and .rootfs.type == "layers"' \
   <<< "$CONFIG" >/dev/null 2>&1 || fail "The archive was not built from the provided Containerfile."
 
 LAYER_COUNT="$(jq '.Layers | length' <<< "$ENTRY")"
@@ -100,7 +100,7 @@ jq -e --argjson local "$LOCAL_IMAGE" '
   and (.config | runtime_config) == ($local.Config | runtime_config)
 ' <<< "$CONFIG" >/dev/null 2>&1 \
   || fail "Archive layers or runtime configuration differ from the local image."
-pass "Archive layers and runtime configuration match the local Task 001 image."
+pass "Archive layers and runtime configuration match the local Task 400 image."
 
 # 레이어 파일 이름만 확인하면 손상된 제출물이 통과하므로 내용 해시도 비교
 for ((index = 0; index < LAYER_COUNT; index++)); do
@@ -115,4 +115,4 @@ for ((index = 0; index < LAYER_COUNT; index++)); do
   fi
 done
 pass "All $LAYER_COUNT image layers are present and intact."
-echo "Task 001 complete."
+echo "Task 400 complete."

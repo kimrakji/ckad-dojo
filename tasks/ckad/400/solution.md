@@ -1,12 +1,12 @@
-# Task 001 Solution: 컨테이너 이미지 빌드·저장 해설
+# Task 400 Solution: 컨테이너 이미지 빌드·저장 해설
 
 ## Preparation: 준비
 
 저장소 루트에서 실행합니다.
 
 ```bash
-./tasks/ckad/001/scripts/setup.sh
-cd tasks/ckad/001
+./tasks/ckad/400/scripts/setup.sh
+cd tasks/ckad/400
 ```
 
 ## Solution: 풀이
@@ -45,7 +45,7 @@ docker image save \
 ./scripts/verify.sh
 ```
 
-성공하면 `Task 001 complete.`가 출력됩니다. 실습을 마치면 정리합니다.
+성공하면 `Task 400 complete.`가 출력됩니다. 실습을 마치면 정리합니다.
 
 ```bash
 ./scripts/cleanup.sh

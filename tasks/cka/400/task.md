@@ -1,9 +1,10 @@
-# CKA Task 001 — Update a ConfigMap to Allow TLS 1.2
+# CKA Task 400 — Update a ConfigMap to Allow TLS 1.2
 
 **Environment:** Ubuntu VM\
+**Difficulty:** MEDIUM\
 **Context:** `kind-cloud-native-dojo`\
 **Namespace:** `nginx-static`\
-**Working directory:** `<repository>/tasks/cka/001`
+**Working directory:** `<repository>/tasks/cka/400`
 
 ## Task: 문제
 

@@ -56,7 +56,7 @@ openssl req -x509 -nodes -newkey rsa:2048 -days 365 \
 "${KUBE[@]}" apply -f "${TASK_DIR}/fixtures/resources.yaml"
 "${KUBE[@]}" -n "$NAMESPACE" rollout status deployment/nginx-static --timeout=180s
 
-echo "CKA Task 001 is ready."
+echo "CKA Task 400 is ready."
 echo "Context: $KUBE_CONTEXT"
 echo "Working directory: $TASK_DIR"
 echo "Read task.md, solve the task, then run scripts/verify.sh."

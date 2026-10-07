@@ -14,8 +14,8 @@
 - `infra/scripts/check.sh`: 설치된 도구, Docker daemon, 클러스터 상태 점검
 - `infra/scripts/reset.sh`: 기존 클러스터 삭제 후 재생성
 - `infra/scripts/destroy.sh`: 클러스터 삭제
-- `tasks/ckad/001/`: 컨테이너 이미지 빌드·저장 문제, 준비·검증·정리 스크립트 및 한국어 해설
-- `tasks/cka/001/`: ConfigMap 수정으로 TLS 1.2 접속을 허용하는 문제, 준비·검증·정리 스크립트 및 한국어 해설
+- `tasks/ckad/400/` (MEDIUM): 컨테이너 이미지 빌드·저장 문제, 준비·검증·정리 스크립트 및 한국어 해설
+- `tasks/cka/400/` (MEDIUM): ConfigMap 수정으로 TLS 1.2 접속을 허용하는 문제, 준비·검증·정리 스크립트 및 한국어 해설
 - `concepts/`: ConfigMap·Deployment·Service·Secret·TLS의 독립적인 개념 설명과 workout
 
 설치·초기화 스크립트는 `infra/kind.yaml`을 사용해 단일 control-plane 노드 클러스터를 생성합니다.
@@ -65,9 +65,9 @@ cloud-native-dojo/
 │       └── reset.sh
 ├── tasks/           # 시험·학습 주제별 훈련 문제
 │   ├── ckad/
-│   │   └── 001/
+│   │   └── 400/
 │   ├── cka/
-│   │   └── 001/
+│   │   └── 400/
 │   └── lfcs/        # 실습 문제 추가 예정
 ├── .gitignore
 └── README.md
@@ -153,12 +153,26 @@ kind delete cluster --name ckad
 
 환경 관리 스크립트는 `cloud-native-dojo` 클러스터만 관리하므로 기존 `ckad` 클러스터 정리는 위 명령으로 별도 수행합니다.
 
+## Task Difficulty: 문제 난이도
+
+문제 번호는 각 트랙에서 `100`부터 세 자리로 관리하며, 번호 구간으로 난이도를 구분합니다.
+
+| 문제 번호 | 난이도 | 기준 |
+| --- | --- | --- |
+| `100`–`399` | EASY | 단일 개념의 생성·조회·변경을 따라 하며 동작을 익히는 플레이그라운드 |
+| `400`–`699` | MEDIUM | 시험에 나올 만한 요구사항을 읽고 스스로 풀이·검증하는 실전형 문제 |
+| `700`–`999` | HARD | 복합 요구사항과 장애 원인 분석이 필요한 고난도 실전형 문제 |
+
+이 저장소에서 시험 수준의 문제는 MEDIUM부터 시작합니다. 시험 문제 중 비교적 간단한 작업도 EASY로 분류하지 않습니다.
+
+현재 컨테이너 이미지 빌드·저장 문제와 ConfigMap의 TLS 설정 변경 문제는 모두 MEDIUM입니다. 기존 문제를 각 트랙의 `400`으로 이동했습니다. `400`의 정리 스크립트는 이전 번호인 `001`·`300` 소유 라벨이 붙은 실습 리소스도 정리할 수 있습니다.
+
 ## Task Workflow: 반복 실습
 
 각 문제는 `tasks/<track>/<number>/` 아래에서 다음 구조를 사용합니다. `<track>`은 `ckad`, `cka`처럼 시험·학습 주제를 나타내며, 문제 번호는 각 분류 안에서 관리합니다. 문제별 `scripts/`는 준비·검증·정리를 담당하고, `fixtures/`는 준비 파일 원본을 보관합니다. 풀이와 생성 결과는 `workspace/`에서 관리하며 Git에 저장하지 않습니다.
 
 ```text
-tasks/ckad/001/
+tasks/ckad/400/
 ├── task.md                    # 상단 영문·하단 한글 문제
 ├── solution.md                # 한국어 풀이·해설
 ├── scripts/
@@ -172,17 +186,17 @@ tasks/ckad/001/
 저장소 루트에서 첫 번째 CKAD 문제를 준비합니다.
 
 ```bash
-./tasks/ckad/001/scripts/setup.sh
-cd tasks/ckad/001
+./tasks/ckad/400/scripts/setup.sh
+cd tasks/ckad/400
 ```
 
-[CKAD Task 001](tasks/ckad/001/task.md)을 읽고 직접 풀이한 뒤 검증합니다.
+[CKAD Task 400](tasks/ckad/400/task.md)을 읽고 직접 풀이한 뒤 검증합니다.
 
 ```bash
 ./scripts/verify.sh
 ```
 
-풀이 후 [한국어 해설](tasks/ckad/001/solution.md)에서 풀이 명령과 핵심 개념을 확인할 수 있습니다. 문제 디렉터리에서는 터미널로 읽을 수 있습니다.
+풀이 후 [한국어 해설](tasks/ckad/400/solution.md)에서 풀이 명령과 핵심 개념을 확인할 수 있습니다. 문제 디렉터리에서는 터미널로 읽을 수 있습니다.
 
 ```bash
 less solution.md
@@ -195,18 +209,18 @@ less solution.md
 ./scripts/setup.sh
 ```
 
-CKAD Task 001 검증에는 Docker, `jq`, `tar`, `gzip`, SHA-256 도구가 필요합니다. Ubuntu 환경 설치 스크립트에서 필요한 패키지를 설치합니다. Podman으로 풀이할 때는 준비·검증·정리 명령에 `CONTAINER_TOOL=podman`을 지정합니다.
+CKAD Task 400 검증에는 Docker, `jq`, `tar`, `gzip`, SHA-256 도구가 필요합니다. Ubuntu 환경 설치 스크립트에서 필요한 패키지를 설치합니다. Podman으로 풀이할 때는 준비·검증·정리 명령에 `CONTAINER_TOOL=podman`을 지정합니다.
 
-### CKA Task 001: ConfigMap과 TLS 설정 변경
+### CKA Task 400: ConfigMap과 TLS 설정 변경
 
 `cloud-native-dojo` 클러스터가 준비된 Ubuntu VM의 저장소 루트에서 첫 번째 CKA 문제를 시작합니다. 준비에는 `kubectl`, `jq`, `openssl`이 필요하고 검증에는 `curl`도 사용합니다.
 
 ```bash
-./tasks/cka/001/scripts/setup.sh
-cd tasks/cka/001
+./tasks/cka/400/scripts/setup.sh
+cd tasks/cka/400
 ```
 
-[CKA Task 001](tasks/cka/001/task.md)을 직접 풀이한 뒤 검증하고, [한국어 해설](tasks/cka/001/solution.md)에서 핵심을 확인합니다.
+[CKA Task 400](tasks/cka/400/task.md)을 직접 풀이한 뒤 검증하고, [한국어 해설](tasks/cka/400/solution.md)에서 핵심을 확인합니다.
 
 ```bash
 ./scripts/verify.sh
@@ -218,7 +232,7 @@ cd tasks/cka/001
 
 [개념 학습 안내](concepts/README.md)에서 원하는 개념을 선택합니다. 각 `README.md`는 동작 원리를 설명하고, `workout.md`는 자체 준비, 예측 질문, 관찰 과제, 검증, 정리 절차를 제공합니다.
 
-Kubernetes workout은 개념별 Namespace를 사용하고 TLS workout은 로컬 OpenSSL 서버를 사용합니다. 다른 workout이나 시험 문제의 풀이 상태에 의존하지 않습니다. 문제 문서의 관련 개념 링크로 학습하고, [CKA 001 해설](tasks/cka/001/solution.md#explanation-해설)에서 문제에 적용되는 방식을 확인할 수 있습니다.
+Kubernetes workout은 개념별 Namespace를 사용하고 TLS workout은 로컬 OpenSSL 서버를 사용합니다. 다른 workout이나 시험 문제의 풀이 상태에 의존하지 않습니다. 문제 문서의 관련 개념 링크로 학습하고, [CKA 400 해설](tasks/cka/400/solution.md#explanation-해설)에서 문제에 적용되는 방식을 확인할 수 있습니다.
 
 ## Next Steps: 다음 단계
 

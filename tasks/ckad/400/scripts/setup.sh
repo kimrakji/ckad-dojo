@@ -34,6 +34,6 @@ done
 mkdir -p "$WORKSPACE_DIR"
 cp -R "${TASK_DIR}/fixtures/notice-site" "$WORKSPACE_DIR/notice-site"
 
-echo "Task 001 is ready."
+echo "Task 400 is ready."
 echo "Working directory: $TASK_DIR"
 echo "Read task.md, solve the task, then run scripts/verify.sh."

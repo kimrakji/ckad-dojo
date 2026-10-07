@@ -80,4 +80,4 @@ curl --fail --silent --show-error --insecure \
   || fail "TLS 1.2 HTTPS request failed. Apply the ConfigMap change to the running Pods."
 pass "The running HTTPS service accepts TLS 1.2."
 
-echo "CKA Task 001 complete."
+echo "CKA Task 400 complete."

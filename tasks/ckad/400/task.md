@@ -1,7 +1,8 @@
-# Task 001 — Build and Package a Container Image
+# Task 400 — Build and Package a Container Image
 
 **Environment:** Ubuntu VM\
-**Working directory:** `<repository>/tasks/ckad/001`
+**Difficulty:** MEDIUM\
+**Working directory:** `<repository>/tasks/ckad/400`
 
 ## Task
 
@@ -37,7 +38,8 @@ Use any available tool to complete the task. Do not modify the provided build fi
 ## 한국어 — 컨테이너 이미지 빌드 및 패키징
 
 **실행 환경:** Ubuntu VM\
-**작업 디렉터리:** `<repository>/tasks/ckad/001`
+**난이도:** MEDIUM\
+**작업 디렉터리:** `<repository>/tasks/ckad/400`
 
 지점 안내 서비스를 오프라인으로 배포하기 위한 패키지가 필요합니다.
 

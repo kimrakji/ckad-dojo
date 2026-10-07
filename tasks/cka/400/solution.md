@@ -1,12 +1,12 @@
-# CKA Task 001 Solution: ConfigMap의 TLS 설정 변경
+# CKA Task 400 Solution: ConfigMap의 TLS 설정 변경
 
 ## Preparation: 준비
 
 저장소 루트에서 문제를 준비합니다.
 
 ```bash
-./tasks/cka/001/scripts/setup.sh
-cd tasks/cka/001
+./tasks/cka/400/scripts/setup.sh
+cd tasks/cka/400
 ```
 
 ## Solution: 풀이
@@ -107,7 +107,7 @@ workout은 각 개념의 전용 환경에서 진행합니다. 이 문제의 Name
 ./scripts/verify.sh
 ```
 
-성공하면 `CKA Task 001 complete.`가 출력됩니다. 수동으로 실행한 port-forward는 `Ctrl+C`로 종료합니다.
+성공하면 `CKA Task 400 complete.`가 출력됩니다. 수동으로 실행한 port-forward는 `Ctrl+C`로 종료합니다.
 다시 연습하려면 문제 Namespace와 작업 파일을 정리한 뒤 준비합니다.
 
 ```bash
