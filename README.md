@@ -4,7 +4,7 @@
 
 문제는 `tasks/ckad/`, `tasks/cka/`처럼 시험·학습 주제별로 분류하고, 각 문제를 독립적인 실습 단위로 관리합니다. 준비된 환경에서 직접 풀이하고, 결과를 검증한 뒤 정리하여 다시 연습합니다. 해설에는 풀이 명령과 핵심 개념을 간결하게 남깁니다.
 
-현재 Ubuntu 기반 환경 관리 스크립트와 첫 번째 컨테이너 이미지 빌드·저장 문제가 준비되어 있습니다. 환경 관리 스크립트는 `kind` 클러스터의 생성·점검·초기화·삭제를 담당합니다.
+현재 Ubuntu 기반 환경 관리 스크립트, CKAD 컨테이너 이미지 빌드·저장 문제와 CKA ConfigMap·TLS 설정 변경 문제가 준비되어 있습니다. 환경 관리 스크립트는 `kind` 클러스터의 생성·점검·초기화·삭제를 담당합니다.
 
 ## Current Status : 현재 상태
 
@@ -13,7 +13,7 @@
 - `infra/scripts/reset.sh`: 기존 클러스터 삭제 후 재생성
 - `infra/scripts/destroy.sh`: 클러스터 삭제
 - `tasks/ckad/001/`: 컨테이너 이미지 빌드·저장 문제, 준비·검증·정리 스크립트 및 한국어 해설
-- `tasks/cka/`: CKA 실습 문제 추가 예정
+- `tasks/cka/001/`: ConfigMap 수정으로 TLS 1.2 접속을 허용하는 문제, 준비·검증·정리 스크립트 및 한국어 해설
 
 설치·초기화 스크립트는 `infra/kind.yaml`을 사용해 단일 control-plane 노드 클러스터를 생성합니다.
 
@@ -60,7 +60,9 @@ cloud-native-dojo/
 ├── tasks/           # 시험·학습 주제별 훈련 문제
 │   ├── ckad/
 │   │   └── 001/
-│   └── cka/         # 실습 문제 추가 예정
+│   ├── cka/
+│   │   └── 001/
+│   └── lfcs/        # 실습 문제 추가 예정
 ├── .gitignore
 └── README.md
 ```
@@ -187,14 +189,31 @@ less solution.md
 ./scripts/setup.sh
 ```
 
-검증에는 Docker, `jq`, `tar`, `gzip`, SHA-256 도구가 필요합니다. Ubuntu 환경 설치 스크립트에서 필요한 패키지를 설치합니다. Podman으로 풀이할 때는 준비·검증·정리 명령에 `CONTAINER_TOOL=podman`을 지정합니다.
+CKAD Task 001 검증에는 Docker, `jq`, `tar`, `gzip`, SHA-256 도구가 필요합니다. Ubuntu 환경 설치 스크립트에서 필요한 패키지를 설치합니다. Podman으로 풀이할 때는 준비·검증·정리 명령에 `CONTAINER_TOOL=podman`을 지정합니다.
+
+### CKA Task 001 : ConfigMap과 TLS 설정 변경
+
+`cloud-native-dojo` 클러스터가 준비된 Ubuntu VM의 저장소 루트에서 첫 번째 CKA 문제를 시작합니다. 준비에는 `kubectl`, `jq`, `openssl`이 필요하고 검증에는 `curl`도 사용합니다.
+
+```bash
+./tasks/cka/001/scripts/setup.sh
+cd tasks/cka/001
+```
+
+[CKA Task 001](tasks/cka/001/task.md)을 직접 풀이한 뒤 검증하고, [한국어 해설](tasks/cka/001/solution.md)에서 핵심을 확인합니다.
+
+```bash
+./scripts/verify.sh
+```
+
+다시 연습할 때는 문제 디렉터리에서 `./scripts/cleanup.sh`와 `./scripts/setup.sh`를 순서대로 실행합니다. 준비 스크립트는 기존 `nginx-static` Namespace나 작업 파일을 덮어쓰지 않습니다.
 
 ## Next Steps : 다음 단계
 
 - [x] Task 구조 정의 및 첫 번째 문제 작성
 - [x] 문제별 준비·검증·정리 스크립트 작성
 - [ ] 컨테이너·Kubernetes 등 주제별 실습 문제 추가
-- [ ] CKA 실습 문제 추가
+- [x] 첫 번째 CKA 실습 문제 작성
 - [ ] 오답 및 자주 사용하는 패턴 기록
 - [ ] CKAD 모의시험 구성
 

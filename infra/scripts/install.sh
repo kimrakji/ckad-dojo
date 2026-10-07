@@ -110,6 +110,7 @@ sudo apt-get install -y \
   git \
   gzip \
   jq \
+  openssl \
   tar \
   wget
 

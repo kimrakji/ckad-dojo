@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nginx-static
+  labels:
+    app.kubernetes.io/part-of: cloud-native-dojo
+    cloud-native-dojo/task: cka-001
