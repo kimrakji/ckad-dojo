@@ -4,6 +4,8 @@
 
 문제는 `tasks/ckad/`, `tasks/cka/`처럼 시험·학습 주제별로 분류하고, 각 문제를 독립적인 실습 단위로 관리합니다. 준비된 환경에서 직접 풀이하고, 결과를 검증한 뒤 정리하여 다시 연습합니다. 해설에는 풀이 명령과 핵심 개념을 간결하게 남깁니다.
 
+`concepts/`에서는 기술 개념을 독립적으로 학습하고 workout으로 동작을 관찰합니다. 각 workout은 자체 예제와 준비·검증·정리 절차를 사용합니다. [개념 학습 안내](concepts/README.md)에서 원하는 주제를 선택할 수 있습니다.
+
 현재 Ubuntu 기반 환경 관리 스크립트, CKAD 컨테이너 이미지 빌드·저장 문제와 CKA ConfigMap·TLS 설정 변경 문제가 준비되어 있습니다. 환경 관리 스크립트는 `kind` 클러스터의 생성·점검·초기화·삭제를 담당합니다.
 
 ## Current Status: 현재 상태
@@ -14,6 +16,7 @@
 - `infra/scripts/destroy.sh`: 클러스터 삭제
 - `tasks/ckad/001/`: 컨테이너 이미지 빌드·저장 문제, 준비·검증·정리 스크립트 및 한국어 해설
 - `tasks/cka/001/`: ConfigMap 수정으로 TLS 1.2 접속을 허용하는 문제, 준비·검증·정리 스크립트 및 한국어 해설
+- `concepts/`: ConfigMap·Deployment·Service·Secret·TLS의 독립적인 개념 설명과 workout
 
 설치·초기화 스크립트는 `infra/kind.yaml`을 사용해 단일 control-plane 노드 클러스터를 생성합니다.
 
@@ -50,6 +53,9 @@ Docker 버전은 고정하지 않습니다. Docker 명령이 없으면 공식 AP
 
 ```text
 cloud-native-dojo/
+├── concepts/        # 개념 설명과 반복 훈련
+│   ├── k8s/         # ConfigMap / Deployment / Secret / Service
+│   └── networking/  # TLS
 ├── infra/
 │   ├── kind.yaml
 │   └── scripts/     # 공통 실습 환경 관리
@@ -208,12 +214,19 @@ cd tasks/cka/001
 
 다시 연습할 때는 문제 디렉터리에서 `./scripts/cleanup.sh`와 `./scripts/setup.sh`를 순서대로 실행합니다. 준비 스크립트는 기존 `nginx-static` Namespace나 작업 파일을 덮어쓰지 않습니다.
 
+### Concept Workout: 개념 반복 훈련
+
+[개념 학습 안내](concepts/README.md)에서 원하는 개념을 선택합니다. 각 `README.md`는 동작 원리를 설명하고, `workout.md`는 자체 준비, 예측 질문, 관찰 과제, 검증, 정리 절차를 제공합니다.
+
+Kubernetes workout은 개념별 Namespace를 사용하고 TLS workout은 로컬 OpenSSL 서버를 사용합니다. 다른 workout이나 시험 문제의 풀이 상태에 의존하지 않습니다. 문제 문서의 관련 개념 링크로 학습하고, [CKA 001 해설](tasks/cka/001/solution.md#explanation-해설)에서 문제에 적용되는 방식을 확인할 수 있습니다.
+
 ## Next Steps: 다음 단계
 
 - [x] Task 구조 정의 및 첫 번째 문제 작성
 - [x] 문제별 준비·검증·정리 스크립트 작성
 - [ ] 컨테이너·Kubernetes 등 주제별 실습 문제 추가
 - [x] 첫 번째 CKA 실습 문제 작성
+- [x] 독립적인 개념 설명과 workout 작성
 - [ ] 오답 및 자주 사용하는 패턴 기록
 - [ ] CKAD 모의시험 구성
 

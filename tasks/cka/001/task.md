@@ -53,3 +53,13 @@ curl -k --tlsv1.2 --tls-max 1.2 --noproxy '*' \
 
 자동 검증은 문제 디렉터리에서 `./scripts/verify.sh`로 실행합니다.
 검증 스크립트는 임시 포트로 접속하므로 위 수동 port-forward와 함께 사용할 수 있습니다.
+
+## Related Concepts: 관련 개념
+
+필요한 개념은 아래 문서에서 학습할 수 있습니다. 개념별 workout은 자체 환경에서 진행하므로 이 문제의 풀이 상태를 변경하지 않습니다.
+
+- [ConfigMap: 설정 파일과 subPath](../../../concepts/k8s/configmap/README.md)
+- [Deployment: Pod 관리와 설정 반영](../../../concepts/k8s/deployment/README.md)
+- [Service: selector와 접속 포트](../../../concepts/k8s/service/README.md)
+- [Secret: 인증서와 개인 키 전달](../../../concepts/k8s/secret/README.md)
+- [TLS: 허용 프로토콜과 연결 검증](../../../concepts/networking/tls/README.md)
