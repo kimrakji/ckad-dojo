@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playground-web
+  namespace: cka-100
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: playground-web
+  template:
+    metadata:
+      labels:
+        app: playground-web
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.30.5-alpine
+          ports:
+            - containerPort: 80

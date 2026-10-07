@@ -50,4 +50,9 @@ selector는 template의 label과 일치해야 합니다. Deployment 이름이 �
 - replicas 변경과 이미지 변경은 ReplicaSet에 어떤 차이를 만들까요?
 - `rollout restart`가 Pod template을 바꾸는 이유는 무엇일까요?
 
+## Related Tasks: 관련 문제
+
+- [CKA 100 · EASY: Deployment 생성·조회·스케일링](../../../tasks/cka/100/task.md)
+- [CKA 400 · MEDIUM: ConfigMap 변경 후 Deployment 재시작](../../../tasks/cka/400/task.md)
+
 [Deployment workout](workout.md) · [개념 목록](../../README.md)
