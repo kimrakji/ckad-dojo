@@ -1,6 +1,6 @@
-# Task 001 Solution : 컨테이너 이미지 빌드·저장 해설
+# Task 001 Solution: 컨테이너 이미지 빌드·저장 해설
 
-## Preparation : 준비
+## Preparation: 준비
 
 저장소 루트에서 실행합니다.
 
@@ -9,7 +9,7 @@
 cd tasks/ckad/001
 ```
 
-## Solution : 풀이
+## Solution: 풀이
 
 문제 디렉터리에서 이미지를 빌드하고 Docker 이미지 아카이브로 저장합니다.
 
@@ -26,7 +26,7 @@ docker image save \
   branch-notice:2.4.1
 ```
 
-## Key Points : 핵심
+## Key Points: 핵심
 
 - `-f`: 빌드 파일명이 `Containerfile`이므로 경로를 지정합니다.
 - `-t`: 요구한 이미지 이름과 태그를 지정합니다.
@@ -39,7 +39,7 @@ docker image save \
 준비 파일 --build--> 이미지 --save--> 아카이브 --load--> 이미지
 ```
 
-## Verify and Cleanup : 검증·정리
+## Verify and Cleanup: 검증·정리
 
 ```bash
 ./scripts/verify.sh
@@ -51,7 +51,7 @@ docker image save \
 ./scripts/cleanup.sh
 ```
 
-## References : 참고 문서
+## References: 참고 문서
 
 - [Docker build](https://docs.docker.com/reference/cli/docker/buildx/build/)
 - [Docker image save](https://docs.docker.com/reference/cli/docker/image/save/)

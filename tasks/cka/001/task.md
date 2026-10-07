@@ -5,7 +5,7 @@
 **Namespace:** `nginx-static`\
 **Working directory:** `<repository>/tasks/cka/001`
 
-## Task : 문제
+## Task: 문제
 
 An existing Deployment named `nginx-static` runs in the `nginx-static` namespace.
 It uses the `nginx-config` ConfigMap to configure its HTTPS server, which currently accepts only TLS 1.3 connections.
@@ -19,7 +19,7 @@ Use the local connection procedure below to test the endpoint. You may use any a
 
 ---
 
-## Korean : 한국어 문제
+## Korean: 한국어 문제
 
 `nginx-static` Namespace에 같은 이름의 Deployment가 실행 중입니다.
 이 Deployment는 `nginx-config` ConfigMap으로 HTTPS 서버를 설정하며, 현재 TLS 1.3 연결만 허용합니다.
@@ -31,7 +31,7 @@ Deployment, ConfigMap, Service, TLS Secret의 기존 이름을 유지하십시�
 
 아래 로컬 접속 절차로 결과를 확인할 수 있습니다. 사용 가능한 도구를 자유롭게 사용해 문제를 해결하십시오.
 
-## Test Access : 접속 테스트
+## Test Access: 접속 테스트
 
 원본 문제의 시험 호스트 대신 Ubuntu VM의 `kind-cloud-native-dojo` context를 사용합니다.
 kind 클러스터에 접속하기 위해 별도 터미널에서 다음 명령을 실행하고 유지합니다.

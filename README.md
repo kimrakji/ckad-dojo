@@ -6,7 +6,7 @@
 
 현재 Ubuntu 기반 환경 관리 스크립트, CKAD 컨테이너 이미지 빌드·저장 문제와 CKA ConfigMap·TLS 설정 변경 문제가 준비되어 있습니다. 환경 관리 스크립트는 `kind` 클러스터의 생성·점검·초기화·삭제를 담당합니다.
 
-## Current Status : 현재 상태
+## Current Status: 현재 상태
 
 - `infra/scripts/install.sh`: 도구 설치, 셸 설정, 클러스터 생성 및 준비 상태 확인
 - `infra/scripts/check.sh`: 설치된 도구, Docker daemon, 클러스터 상태 점검
@@ -17,7 +17,7 @@
 
 설치·초기화 스크립트는 `infra/kind.yaml`을 사용해 단일 control-plane 노드 클러스터를 생성합니다.
 
-## Environment : 실행 환경
+## Environment: 실행 환경
 
 로컬 실습은 다음 구성을 기준으로 합니다. 설치 스크립트는 Ubuntu의 ARM64(`aarch64` 또는 `arm64`)와 AMD64(`x86_64`)를 지원합니다.
 
@@ -46,7 +46,7 @@ Docker 버전은 고정하지 않습니다. Docker 명령이 없으면 공식 AP
 
 환경 관리 스크립트의 클러스터 이름은 `cloud-native-dojo`, kubectl context는 `kind-cloud-native-dojo`입니다. 단일 control-plane 노드 이름은 `cloud-native-dojo-control-plane`입니다.
 
-## Project Structure : 프로젝트 구조
+## Project Structure: 프로젝트 구조
 
 ```text
 cloud-native-dojo/
@@ -67,7 +67,7 @@ cloud-native-dojo/
 └── README.md
 ```
 
-## Installation : 설치
+## Installation: 설치
 
 Ubuntu VM에서 저장소를 clone합니다.
 
@@ -99,13 +99,13 @@ source ~/.bashrc
 
 처음 Docker 그룹에 추가된 경우 SSH 세션을 재접속해야 이후 점검·초기화 명령에서 `sudo` 없이 Docker를 사용할 수 있습니다.
 
-## Cluster Management : 클러스터 관리
+## Cluster Management: 클러스터 관리
 
 아래 스크립트도 Ubuntu VM에서 일반 사용자로 실행합니다.
 
 스크립트는 파일로 실행합니다. 본문을 터미널에 직접 붙여넣거나 `source`로 실행하면 스크립트의 종료 설정이 현재 셸에 적용되어 SSH 세션까지 종료될 수 있습니다.
 
-### Status : 상태 확인
+### Status: 상태 확인
 
 ```bash
 ./infra/scripts/check.sh
@@ -119,7 +119,7 @@ Node·Pod 조회는 `kind-cloud-native-dojo` context를 명시하여 수행합�
 kubectl config use-context kind-cloud-native-dojo
 ```
 
-### Reset : 초기화
+### Reset: 초기화
 
 ```bash
 ./infra/scripts/reset.sh
@@ -127,7 +127,7 @@ kubectl config use-context kind-cloud-native-dojo
 
 기존 `cloud-native-dojo` 클러스터와 그 안의 리소스를 삭제한 뒤 지정된 Kubernetes 버전으로 재생성합니다. 기존 클러스터가 없으면 새로 생성하며, Node와 CoreDNS가 준비될 때까지 기다립니다.
 
-### Destroy : 삭제
+### Destroy: 삭제
 
 ```bash
 ./infra/scripts/destroy.sh
@@ -135,7 +135,7 @@ kubectl config use-context kind-cloud-native-dojo
 
 `cloud-native-dojo` 클러스터를 삭제합니다. Docker와 설치된 도구는 유지하며, 클러스터가 없으면 안내 메시지를 출력하고 종료합니다. 다시 훈련하려면 초기화 절차를 실행합니다.
 
-### Migration : 기존 클러스터 전환
+### Migration: 기존 클러스터 전환
 
 기존 `ckad` 클러스터가 있으면 Ubuntu VM의 저장소 루트에서 다음 명령으로 새 이름의 클러스터로 전환합니다. 첫 번째 명령은 기존 `ckad` 클러스터와 그 안의 실습 리소스를 삭제합니다.
 
@@ -147,7 +147,7 @@ kind delete cluster --name ckad
 
 환경 관리 스크립트는 `cloud-native-dojo` 클러스터만 관리하므로 기존 `ckad` 클러스터 정리는 위 명령으로 별도 수행합니다.
 
-## Task Workflow : 반복 실습
+## Task Workflow: 반복 실습
 
 각 문제는 `tasks/<track>/<number>/` 아래에서 다음 구조를 사용합니다. `<track>`은 `ckad`, `cka`처럼 시험·학습 주제를 나타내며, 문제 번호는 각 분류 안에서 관리합니다. 문제별 `scripts/`는 준비·검증·정리를 담당하고, `fixtures/`는 준비 파일 원본을 보관합니다. 풀이와 생성 결과는 `workspace/`에서 관리하며 Git에 저장하지 않습니다.
 
@@ -191,7 +191,7 @@ less solution.md
 
 CKAD Task 001 검증에는 Docker, `jq`, `tar`, `gzip`, SHA-256 도구가 필요합니다. Ubuntu 환경 설치 스크립트에서 필요한 패키지를 설치합니다. Podman으로 풀이할 때는 준비·검증·정리 명령에 `CONTAINER_TOOL=podman`을 지정합니다.
 
-### CKA Task 001 : ConfigMap과 TLS 설정 변경
+### CKA Task 001: ConfigMap과 TLS 설정 변경
 
 `cloud-native-dojo` 클러스터가 준비된 Ubuntu VM의 저장소 루트에서 첫 번째 CKA 문제를 시작합니다. 준비에는 `kubectl`, `jq`, `openssl`이 필요하고 검증에는 `curl`도 사용합니다.
 
@@ -208,7 +208,7 @@ cd tasks/cka/001
 
 다시 연습할 때는 문제 디렉터리에서 `./scripts/cleanup.sh`와 `./scripts/setup.sh`를 순서대로 실행합니다. 준비 스크립트는 기존 `nginx-static` Namespace나 작업 파일을 덮어쓰지 않습니다.
 
-## Next Steps : 다음 단계
+## Next Steps: 다음 단계
 
 - [x] Task 구조 정의 및 첫 번째 문제 작성
 - [x] 문제별 준비·검증·정리 스크립트 작성

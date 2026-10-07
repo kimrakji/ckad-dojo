@@ -1,6 +1,6 @@
-# CKA Task 001 Solution : ConfigMap의 TLS 설정 변경
+# CKA Task 001 Solution: ConfigMap의 TLS 설정 변경
 
-## Preparation : 준비
+## Preparation: 준비
 
 저장소 루트에서 문제를 준비합니다.
 
@@ -9,7 +9,7 @@
 cd tasks/cka/001
 ```
 
-## Solution : 풀이
+## Solution: 풀이
 
 ConfigMap의 현재 설정을 확인하고 편집합니다.
 
@@ -37,7 +37,7 @@ kubectl --context kind-cloud-native-dojo -n nginx-static \
   rollout status deployment/nginx-static --timeout=180s
 ```
 
-## Key Points : 핵심
+## Key Points: 핵심
 
 - `ssl_protocols`는 Nginx가 허용하는 TLS 버전을 지정합니다.
 - 이 문제는 ConfigMap 파일을 `subPath`로 마운트합니다. 기존 Pod에는 ConfigMap 변경이 자동 반영되지 않으므로 Pod를 다시 생성해야 합니다.
@@ -49,7 +49,7 @@ kubectl --context kind-cloud-native-dojo -n nginx-static \
 ConfigMap 수정 → Pod 재생성 → Nginx 설정 적용 → TLS 1.2 접속 확인
 ```
 
-## Verify and Cleanup : 검증·정리
+## Verify and Cleanup: 검증·정리
 
 ```bash
 ./scripts/verify.sh
@@ -63,7 +63,7 @@ ConfigMap 수정 → Pod 재생성 → Nginx 설정 적용 → TLS 1.2 접속 �
 ./scripts/setup.sh
 ```
 
-## References : 참고 문서
+## References: 참고 문서
 
 - 제공된 `2-1 task-configmap (2).pdf`의 ConfigMap·TLS 문제를 로컬 kind 환경에 맞게 구성했습니다.
 - [Kubernetes ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/)
